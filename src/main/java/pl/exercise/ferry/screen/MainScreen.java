@@ -4,13 +4,24 @@ import java.util.Scanner;
 
 public class MainScreen implements Screen {
 
-  private final Scanner in = new Scanner(System.in);
+    public final Scanner in = new Scanner(System.in);
 
-  public void interact() {
-    System.out.println("To jak, do bierzemy się za robote?");
-    String firstResponse = in.nextLine();
-    if ("tak".equalsIgnoreCase(firstResponse)) {
-      System.out.println("To super!");
+    @Override
+    public ScreenName interact() {
+        System.out.println("-------------------------------");
+        System.out.println("Witamy w systemie \"Twój rejs\", wybierz akcję:");
+        System.out.println("1.Chcę kupić bilet");
+        System.out.println("2.Odczyt zapisanych danych rejsu");
+        System.out.println("3.Zamknąć system");
+        System.out.println("-------------------------------");
+
+        int s = in.nextInt();
+        if (s == 1) {
+            return ScreenName.TicketScreen;
+        } else if (s == 3) {
+            return ScreenName.Exit;
+        }
+        return ScreenName.Exit;
+
     }
-  }
 }
